@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARK.GO | Parking and Towing</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-landing" data-page="landing">
+  <header class="topbar">
+    <a class="brand" href="/index.html">PARK.GO</a>
+    <nav class="topnav" aria-label="Primary">
+      <a class="nav-link active" href="/index.html">Home</a>
+      <a class="nav-link" href="/user.html?mode=parking">Parking</a>
+      <a class="nav-link" href="/user.html?mode=towing">Towing</a>
+      <a class="nav-link" href="/vendor.html">Vendor</a>
+    </nav>
+  </header>
+
+  <main class="page-shell">
+    <section class="hero-grid">
+      <div class="hero-copy card">
+        <p class="eyebrow">Smart parking and towing for malls, streets, and public areas</p>
+        <h1>Find a space, book it, and leave with a QR pass.</h1>
+        <p class="lead">
+          PARK.GO combines parking discovery, AI-style empty space scanning, and towing requests in one simple flow.
+          Choose Parking or Towing, search a location, and continue straight to the right interface.
+        </p>
+
+        <div class="service-tabs" role="tablist" aria-label="Service selector">
+          <button class="service-tab active" type="button" data-service="parking">Parking</button>
+          <button class="service-tab" type="button" data-service="towing">Towing</button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="mini-stat"><strong>AI scan</strong>Empty spaces update in real time</div>
+          <div class="mini-stat"><strong>2 flows</strong>Parking and towing in one app</div>
+          <div class="mini-stat"><strong>1 QR</strong>Unique pass after payment</div>
+        </div>
+      </div>
+
+      <div class="hero-radar card">
+        <div class="radar-card">
+          <div class="radar-sweep"></div>
+          <div class="radar-core"></div>
+          <div class="radar-copy">
+            <p>Helps malls and public areas keep the search short.</p>
+            <strong>Live nearest-provider view</strong>
+          </div>
+        </div>
+        <div class="chip-row">
+          <span class="chip">Select location</span>
+          <span class="chip">Choose vehicle type</span>
+          <span class="chip">Pick a provider</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mode-grid">
+      <article class="mode-card card" id="parkingPreview">
+        <div class="mode-head">
+          <div>
+            <p class="mode-tag">Parking</p>
+            <h2>Step 1, 2, and 3 on one screen</h2>
+          </div>
+          <p class="mode-note">
+            Search a location, choose a vehicle, and preview the nearest provider before moving to the payment page.
+          </p>
+        </div>
+
+        <div class="search-row">
+          <div class="field grow">
+            <label for="landingLocation">Select the location</label>
+            <input id="landingLocation" name="landingLocation" list="landingLocations" placeholder="Search a mall, street, or landmark">
+            <datalist id="landingLocations"></datalist>
+          </div>
+          <div class="field">
+            <label>Vehicle type</label>
+            <div class="vehicle-pills" id="landingVehiclePills"></div>
+          </div>
+        </div>
+
+        <div class="map-layout">
+          <div class="map-shell">
+            <iframe id="landingMap" title="Google map preview" loading="lazy" allowfullscreen></iframe>
+            <div class="map-overlay">
+              <p class="overlay-label">Nearest parking provider</p>
+              <strong id="landingNearestName">Loading live spaces...</strong>
+              <span id="landingNearestDistance">Searching nearby providers</span>
+            </div>
+          </div>
+
+          <aside class="map-sidebar">
+            <div class="scan-card">
+              <p class="small-label">AI detects empty parking spaces</p>
+              <h3 id="landingAiSpaces">-- empty spaces</h3>
+              <p id="landingAiSummary">Live occupancy and rates will appear here.</p>
+            </div>
+            <div class="steps-card">
+              <p class="small-label">How it works</p>
+              <ol class="step-list">
+                <li>Select the location</li>
+                <li>Select the vehicle type</li>
+                <li>Choose the parking space provider</li>
+              </ol>
+            </div>
+          </aside>
+        </div>
+
+        <div class="cta-row">
+          <button class="primary-btn" id="landingParkingContinue" type="button">Continue to parking</button>
+          <a class="secondary-link" href="/vendor.html">View provider dashboard</a>
+        </div>
+      </article>
+
+      <article class="mode-card card hidden" id="towingPreview">
+        <div class="mode-head">
+          <div>
+            <p class="mode-tag">Towing</p>
+            <h2>Switch into a towing request form</h2>
+          </div>
+          <p class="mode-note">
+            If it is a no-parking complaint, the app shows only complaint confirmation and skips payment.
+          </p>
+        </div>
+
+        <form class="quick-form" id="landingTowForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="landingTowName">Name</label>
+              <input id="landingTowName" name="customerName" placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="landingTowVehicleNo">Vehicle number</label>
+              <input id="landingTowVehicleNo" name="vehicleNumber" placeholder="KA01AB1234">
+            </div>
+            <div class="field">
+              <label for="landingTowPickup">Place of pickup</label>
+              <input id="landingTowPickup" name="pickupLocation" list="landingLocations" placeholder="Pickup location">
+            </div>
+            <div class="field">
+              <label for="landingTowDrop">Drop location</label>
+              <input id="landingTowDrop" name="dropLocation" list="landingLocations" placeholder="Drop location">
+            </div>
+            <div class="field">
+              <label for="landingTowContact">Contact</label>
+              <input id="landingTowContact" name="contact" placeholder="Phone number">
+            </div>
+            <div class="field">
+              <label for="landingTowVehicleType">Vehicle type</label>
+              <select id="landingTowVehicleType" name="vehicleType"></select>
+            </div>
+            <div class="field">
+              <label for="landingTowOwnership">Ownership status</label>
+              <select id="landingTowOwnership" name="ownershipStatus"></select>
+            </div>
+            <div class="field">
+              <label for="landingTowComplaint">Complaint type</label>
+              <select id="landingTowComplaint" name="complaintType">
+                <option value="regular_tow">Regular towing</option>
+                <option value="complaint_only">No-parking complaint</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="primary-btn" type="submit">Continue to towing</button>
+            <span class="subtle">The full form opens on the next page.</span>
+          </div>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <script defer src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARK.GO | User Flow</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="page-app" data-page="user">
+  <header class="topbar">
+    <a class="brand" href="/index.html">PARK.GO</a>
+    <nav class="topnav" aria-label="Primary">
+      <a class="nav-link" href="/index.html">Home</a>
+      <a class="nav-link" href="/user.html?mode=parking">Parking</a>
+      <a class="nav-link" href="/user.html?mode=towing">Towing</a>
+      <a class="nav-link" href="/vendor.html">Vendor</a>
+    </nav>
+  </header>
+
+  <main class="page-shell app-shell">
+    <section class="mode-banner card">
+      <div>
+        <p class="mode-tag" id="userModeTag">Parking</p>
+        <h1 id="userTitle">Parking space provider details</h1>
+        <p id="userSubtitle" class="mode-note">
+          Select a provider, review the per-hour price, and complete payment to generate a unique QR code.
+        </p>
+      </div>
+      <div class="banner-actions">
+        <a class="secondary-link" href="/index.html">Back home</a>
+        <a class="secondary-link" href="/vendor.html">Vendor dashboard</a>
+      </div>
+    </section>
+
+    <section id="parkingPane" class="app-pane">
+      <div class="booking-grid">
+        <article class="panel provider-panel">
+          <div class="panel-head">
+            <div>
+              <p class="small-label">Provider details at first</p>
+              <h2 id="selectedProviderName">Loading providers...</h2>
+            </div>
+            <span class="status-pill" id="selectedProviderDistance">0.0 km away</span>
+          </div>
+          <p id="selectedProviderAddress" class="panel-note">
+            We are fetching the nearest parking provider for your selected location.
+          </p>
+          <div class="provider-meta" id="selectedProviderMeta"></div>
+          <div class="chip-row" id="selectedProviderAmenities"></div>
+        </article>
+
+        <article class="panel quote-panel">
+          <p class="small-label">Parking price as per hour</p>
+          <div class="field">
+            <label for="parkingHours">Parking duration</label>
+            <input id="parkingHours" type="range" min="1" max="12" value="2">
+            <div class="range-row">
+              <span>1 hr</span>
+              <strong id="parkingHoursValue">2 hrs</strong>
+              <span>12 hrs</span>
+            </div>
+          </div>
+          <div class="price-stack">
+            <div>
+              <p class="small-label">Rate per hour</p>
+              <strong id="parkingRate">₹0/hr</strong>
+            </div>
+            <div>
+              <p class="small-label">Estimated total</p>
+              <strong id="parkingTotal">₹0</strong>
+            </div>
+          </div>
+          <div class="field mt-16">
+            <label for="parkingCustomerName">Customer name</label>
+            <input id="parkingCustomerName" type="text" placeholder="Name for the parking ticket">
+          </div>
+          <div class="field">
+            <label for="parkingPaymentMethod">Payment method</label>
+            <select id="parkingPaymentMethod">
+              <option value="UPI">UPI</option>
+              <option value="Card">Card</option>
+              <option value="Wallet">Wallet</option>
+            </select>
+          </div>
+          <div class="cta-row">
+            <button class="primary-btn" id="parkingPayNow" type="button">Pay now</button>
+          </div>
+        </article>
+      </div>
+
+      <section class="provider-grid" id="parkingProviderList"></section>
+
+      <section class="success-card hidden" id="parkingSuccess">
+        <div class="success-copy">
+          <p class="small-label">Payment successful</p>
+          <h2>Your unique QR code is ready</h2>
+          <p id="parkingSuccessText">
+            The pass is now active. Download the QR code and keep it for your parking entry.
+          </p>
+        </div>
+        <div class="qr-area">
+          <div id="parkingQr"></div>
+          <div class="cta-row">
+            <button class="primary-btn" id="downloadParkingQr" type="button">Download QR code</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="towingPane" class="app-pane hidden">
+      <div class="towing-grid">
+        <form class="panel tow-form" id="towingForm">
+          <div class="panel-head">
+            <div>
+              <p class="small-label">Towing service</p>
+              <h2>Share the pickup, drop, and complaint details</h2>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="towingCustomerName">Name</label>
+              <input id="towingCustomerName" name="customerName" type="text" placeholder="Your name">
+            </div>
+            <div class="field">
+              <label for="towingVehicleNumber">Vehicle number</label>
+              <input id="towingVehicleNumber" name="vehicleNumber" type="text" placeholder="KA01AB1234">
+            </div>
+            <div class="field">
+              <label for="towingVehicleType">Vehicle type</label>
+              <select id="towingVehicleType" name="vehicleType"></select>
+            </div>
+            <div class="field">
+              <label for="towingOwnership">Ownership status</label>
+              <select id="towingOwnership" name="ownershipStatus"></select>
+            </div>
+            <div class="field">
+              <label for="towingPickup">Place of pickup</label>
+              <input id="towingPickup" name="pickupLocation" list="userLocations" type="text" placeholder="Pickup location">
+            </div>
+            <div class="field">
+              <label for="towingDrop">Drop location</label>
+              <input id="towingDrop" name="dropLocation" list="userLocations" type="text" placeholder="Drop location">
+            </div>
+            <div class="field">
+              <label for="towingContact">Contact details</label>
+              <input id="towingContact" name="contact" type="text" placeholder="Phone number">
+            </div>
+            <div class="field">
+              <label for="towingComplaint">Complaint type</label>
+              <select id="towingComplaint" name="complaintType">
+                <option value="regular_tow">Regular towing</option>
+                <option value="complaint_only">No-parking complaint</option>
+              </select>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label for="towingNotes">Basic details</label>
+              <textarea id="towingNotes" name="notes" placeholder="Vehicle condition, landmark details, or anything helpful for pickup"></textarea>
+            </div>
+          </div>
+
+          <div class="cta-row">
+            <button class="primary-btn" type="submit">Calculate distance</button>
+            <span class="subtle">The application calculates the distance and rate per km automatically.</span>
+          </div>
+        </form>
+
+        <aside class="panel tow-quote" id="towQuotePanel">
+          <p class="small-label">Quote preview</p>
+          <div class="quote-card">
+            <div class="empty-state">
+              Fill the form and press calculate distance to see the towing quote or complaint confirmation.
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <section class="success-card hidden" id="towSuccess">
+        <div class="success-copy">
+          <p class="small-label">Request confirmed</p>
+          <h2 id="towSuccessTitle">Towing request saved</h2>
+          <p id="towSuccessText">We have stored the towing request and shared the reference below.</p>
+        </div>
+        <div class="qr-area">
+          <div class="info-box">
+            <span>Reference code</span>
+            <strong id="towReference">--</strong>
+          </div>
+          <div class="info-box mt-12">
+            <span>Status</span>
+            <strong id="towStatus">--</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <section class="modal hidden" id="paymentModal" aria-hidden="true">
+    <div class="modal-card">
+      <div class="panel-head">
+        <div>
+          <p class="small-label">Payment gateway</p>
+          <h2>Confirm your parking payment</h2>
+        </div>
+        <button class="icon-btn" id="closePaymentModal" type="button">×</button>
+      </div>
+
+      <div class="payment-summary" id="paymentSummary"></div>
+
+      <div class="form-grid two-col">
+        <div class="field">
+          <label for="paymentName">Name on ticket</label>
+          <input id="paymentName" type="text" placeholder="Driver name">
+        </div>
+        <div class="field">
+          <label for="paymentMethod">Payment method</label>
+          <select id="paymentMethod">
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+            <option value="Wallet">Wallet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="paymentReference">Reference note</label>
+          <input id="paymentReference" type="text" placeholder="Optional note">
+        </div>
+        <div class="field">
+          <label for="paymentContact">Contact number</label>
+          <input id="paymentContact" type="text" placeholder="Phone number">
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <button class="primary-btn" id="confirmParkingPayment" type="button">Complete payment</button>
+      </div>
+    </div>
+  </section>
+
+  <datalist id="userLocations"></datalist>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script defer src="/app.js"></script>
+</body>
+</html>

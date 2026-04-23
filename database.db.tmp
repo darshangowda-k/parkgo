@@ -1,0 +1,213 @@
+{
+  "parking_providers": [
+    {
+      "id": 1,
+      "name": "Metro Mall Parking",
+      "area": "Phoenix Tower, Koramangala",
+      "city": "Bengaluru",
+      "latitude": 12.935,
+      "longitude": 77.624,
+      "hourly_rate": 35.0,
+      "total_spaces": 180,
+      "empty_spaces": 41,
+      "ai_detected_empty_spaces": 46,
+      "supported_vehicle_types": [
+        "bike",
+        "car"
+      ],
+      "amenities": [
+        "CCTV",
+        "EV charging",
+        "24x7 security"
+      ],
+      "phone": "+91 80010 10001",
+      "operating_hours": "Open 24x7"
+    },
+    {
+      "id": 2,
+      "name": "Civic Plaza Garage",
+      "area": "Brigade Arcade, MG Road",
+      "city": "Bengaluru",
+      "latitude": 12.974,
+      "longitude": 77.606,
+      "hourly_rate": 42.0,
+      "total_spaces": 220,
+      "empty_spaces": 60,
+      "ai_detected_empty_spaces": 65,
+      "supported_vehicle_types": [
+        "bike",
+        "car",
+        "suv"
+      ],
+      "amenities": [
+        "Lift access",
+        "Valet",
+        "Disabled parking"
+      ],
+      "phone": "+91 80010 10002",
+      "operating_hours": "6:00 AM - 11:00 PM"
+    },
+    {
+      "id": 3,
+      "name": "Skyline Public Lot",
+      "area": "Jio World Drive, BKC",
+      "city": "Mumbai",
+      "latitude": 19.069,
+      "longitude": 72.869,
+      "hourly_rate": 55.0,
+      "total_spaces": 310,
+      "empty_spaces": 88,
+      "ai_detected_empty_spaces": 92,
+      "supported_vehicle_types": [
+        "bike",
+        "car",
+        "suv",
+        "van"
+      ],
+      "amenities": [
+        "EV charging",
+        "Fast exit lane",
+        "Smart sensors"
+      ],
+      "phone": "+91 80010 10003",
+      "operating_hours": "Open 24x7"
+    },
+    {
+      "id": 4,
+      "name": "Lakeside Supermart Parking",
+      "area": "Hitech City Forum",
+      "city": "Hyderabad",
+      "latitude": 17.444,
+      "longitude": 78.376,
+      "hourly_rate": 28.0,
+      "total_spaces": 150,
+      "empty_spaces": 32,
+      "ai_detected_empty_spaces": 35,
+      "supported_vehicle_types": [
+        "bike",
+        "car"
+      ],
+      "amenities": [
+        "CCTV",
+        "Cover parking",
+        "Night patrol"
+      ],
+      "phone": "+91 80010 10004",
+      "operating_hours": "7:00 AM - 11:30 PM"
+    },
+    {
+      "id": 5,
+      "name": "SmartPark Arena",
+      "area": "Pune Station Plaza",
+      "city": "Pune",
+      "latitude": 18.528,
+      "longitude": 73.876,
+      "hourly_rate": 25.0,
+      "total_spaces": 210,
+      "empty_spaces": 77,
+      "ai_detected_empty_spaces": 80,
+      "supported_vehicle_types": [
+        "bike",
+        "car",
+        "suv"
+      ],
+      "amenities": [
+        "Fast entry",
+        "Ticketless exit",
+        "Family zones"
+      ],
+      "phone": "+91 80010 10005",
+      "operating_hours": "Open 24x7"
+    },
+    {
+      "id": 6,
+      "name": "City Center Basement",
+      "area": "Connaught Circle",
+      "city": "Delhi",
+      "latitude": 28.631,
+      "longitude": 77.216,
+      "hourly_rate": 48.0,
+      "total_spaces": 260,
+      "empty_spaces": 92,
+      "ai_detected_empty_spaces": 97,
+      "supported_vehicle_types": [
+        "bike",
+        "car",
+        "suv"
+      ],
+      "amenities": [
+        "EV charging",
+        "On-site help desk",
+        "Basement access"
+      ],
+      "phone": "+91 80010 10006",
+      "operating_hours": "5:30 AM - 12:00 AM"
+    }
+  ],
+  "parking_bookings": [
+    {
+      "bookingCode": "PG-DEMO-001",
+      "providerId": 1,
+      "customerName": "Demo Driver",
+      "location": "Koramangala, Bengaluru",
+      "vehicleType": "car",
+      "hours": 3,
+      "amount": 105.0,
+      "paymentMethod": "UPI",
+      "qrPayload": "PARK.GO|PG-DEMO-001|Metro Mall Parking",
+      "status": "paid",
+      "createdAt": "2026-04-23T14:18:54"
+    },
+    {
+      "bookingCode": "PG-DEMO-002",
+      "providerId": 2,
+      "customerName": "City Explorer",
+      "location": "MG Road, Bengaluru",
+      "vehicleType": "bike",
+      "hours": 2,
+      "amount": 84.0,
+      "paymentMethod": "Card",
+      "qrPayload": "PARK.GO|PG-DEMO-002|Civic Plaza Garage",
+      "status": "paid",
+      "createdAt": "2026-04-23T14:18:54"
+    }
+  ],
+  "towing_requests": [
+    {
+      "requestCode": "TW-DEMO-001",
+      "customerName": "Asha Kumar",
+      "vehicleNumber": "KA01AB1234",
+      "ownershipStatus": "own_vehicle",
+      "complaintType": "regular_tow",
+      "pickupLocation": "Brigade Road, Bengaluru",
+      "dropLocation": "Civic Plaza Garage, Bengaluru",
+      "contact": "+91 98765 43210",
+      "vehicleType": "car",
+      "distanceKm": 6.2,
+      "ratePerKm": 15.0,
+      "amount": 93.0,
+      "paymentRequired": 1,
+      "status": "paid",
+      "etaMinutes": 47,
+      "createdAt": "2026-04-23T14:18:54"
+    },
+    {
+      "requestCode": "TW-DEMO-002",
+      "customerName": "Ravi Mehta",
+      "vehicleNumber": "MH12CD4455",
+      "ownershipStatus": "no_parking",
+      "complaintType": "complaint_only",
+      "pickupLocation": "Jio World Drive, Mumbai",
+      "dropLocation": "Jio World Drive, Mumbai",
+      "contact": "+91 99887 77665",
+      "vehicleType": "bike",
+      "distanceKm": 0.0,
+      "ratePerKm": 8.0,
+      "amount": 0.0,
+      "paymentRequired": 0,
+      "status": "complaint_confirmed",
+      "etaMinutes": 20,
+      "createdAt": "2026-04-23T14:18:54"
+    }
+  ]
+}
